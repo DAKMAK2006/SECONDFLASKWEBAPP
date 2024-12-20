@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <h1>Portfolio</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <td>Symbol</td>
+                <td>Name</td>
+                <td>Shares</td>
+                <td>Price</td>
+                <td>Total Value</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.symbol }}</td>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ stock.total_shares }}</td>
+                    <td>{{ stock.price|usd }}</td>
+                    <td>{{ (stock.price * stock.total_shares)|usd }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4" algn="right">Cash</td>
+                <td>{{ cash|usd }}</td>
+            </tr>
+            <tr>
+                <td colspan="4" algn="right">Total Value</td>
+                <td>{{ total_value|usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
